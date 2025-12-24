@@ -3,180 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Soulmate Is...</title>
+    <title>Orbit Christmas Wish</title>
     <style>
-        /* Mengatur background utama */
         body {
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #0d47a1; /* Warna biru tua background */
+            min-height: 100vh;
+            background: url('https://raw.githubusercontent.com/decembular-soulmate/christmas/main/background.png') no-repeat center center fixed;
+            background-size: cover;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
         }
 
-        /* Container utama (Kartu abu-abu muda) */
         .card {
-            background-color: #e3e9f2;
+            background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
             padding: 40px 30px;
-            border-radius: 40px;
+            border-radius: 25px;
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
+            z-index: 1;
         }
-        /* Judul dengan emoji bintang */
+
+        .christmas-tree {
+            width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
         h1 {
-            color: #1565c0;
+            color: #c62828; /* Merah Natal */
             font-size: 28px;
             margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
         }
 
         p {
             color: #555;
             font-size: 16px;
-            margin-bottom: 30px;
-            line-height: 1.4;
+            margin-bottom: 25px;
         }
 
-        /* Style Input Name */
         input[type="text"] {
             width: 100%;
             padding: 15px;
             border-radius: 15px;
             border: 2px solid #ddd;
-            font-size: 18px;
+            font-size: 17px;
             box-sizing: border-box;
             margin-bottom: 20px;
             outline: none;
-            color: #333;
+            text-align: center;
         }
 
-        input[type="text"]::placeholder {
-            color: #aaa;
-        }
-
-        /* Tombol Reveal Fate */
-        .btn-reveal {
+        .btn-wish {
             width: 100%;
             padding: 15px;
-            background-color: #c62828; /* Warna merah */
+            background-color: #1b5e20; /* Hijau Natal */
             color: white;
             border: none;
             border-radius: 15px;
             font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background-color 0.3s ease;
         }
 
-        .btn-reveal:hover {
-            background-color: #a50b0b;
+        .btn-wish:hover {
+            background-color: #2e7d32;
         }
-        /* Overlay Pop-up */
+
         .overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Background gelap transparan */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
-            z-index: 10;
+            z-index: 1000;
         }
 
-        /* Kotak Pop-up (Modal) */
         .modal {
-            background-color: #f1f3f5;
+            background-color: #fff;
             padding: 30px;
-            border-radius: 30px;
-            width: 80%;
-            max-width: 350px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            position: relative;
         }
 
-        .modal-text {
-            color: #1565c0;
-            font-size: 20px;
-            font-weight: bold;
+        .modal-tree {
+            width: 60px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .modal-wish-text {
+            color: #333;
+            font-size: 17px;
+            line-height: 1.6;
             margin-bottom: 25px;
-            line-height: 1.5;
+            text-align: center;
         }
 
-        /* Tombol Close di Pop-up */
         .btn-close {
-            background-color: #ffeb3b; /* Warna kuning */
-            color: #0d47a1;
-            padding: 12px 40px;
+            background-color: #c62828;
+            color: white;
+            padding: 10px 30px;
             border: none;
-            border-radius: 30px;
-            font-size: 18px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 0px #fbc02d;
+            transition: background-color 0.3s ease;
         }
 
-        .btn-close:active {
-            transform: translateY(2px);
-            box-shadow: none;
+        .btn-close:hover {
+            background-color: #e53935;
         }
     </style>
 </head>
 <body>
 
-
     <div class="card">
-        <h1>✨ Your Soulmate is...</h1>
-        <p>Type your name and let the cosmic nonsense unfold.</p>
+        <img src="https://raw.githubusercontent.com/decembular-soulmate/christmas/main/tree.png" alt="Christmas Tree" class="christmas-tree">
+        <h1>Merry Christmas, Orbit!</h1>
+        <p>Enter your Orbit name to receive your special Christmas wish.</p>
         
-        <input type="text" id="userName" placeholder="Your name..." autocomplete="off">
-        <button class="btn-reveal" onclick="revealFate()">Reveal Fate</button>
+        <input type="text" id="orbitNameInput" placeholder="Your Username (ex:OrbitMaryam)" autocomplete="off">
+        <button class="btn-wish" onclick="getChristmasWish()">Get My Wish</button>
     </div>
-    <div class="overlay" id="overlay">
+
+    <div class="overlay" id="wishOverlay">
         <div class="modal">
-            <div class="modal-text" id="resultText"></div>
-            <button class="btn-close" onclick="closeModal()">Close</button>
+            <img src="https://raw.githubusercontent.com/decembular-soulmate/christmas/main/tree.png" alt="Christmas Tree" class="modal-tree">
+            <div class="modal-wish-text" id="wishText"></div>
+            <button class="btn-close" onclick="closeWishModal()">Close</button>
         </div>
     </div>
 
     <script>
-        const zodiacs = [
-            "Aries", "Taurus", "Gemini", "Cancer", 
-            "Leo", "Virgo", "Libra", "Scorpio", 
-            "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-        ];
+        const orbitWishes = {
+            "OrbitJunhui": "Dear Junhui, may you remain the brightest star in our constellation this Christmas. May your orbit be filled with celestial joy and your path shine with holiday magic. Merry Christmas, superstar!",
+            "OrbitKayina": "Hi Kayina, sending you cosmic warmth this Christmas. May your personal orbit be blessed with peace, and may your holiday spirit glow brighter than the North Star. Merry Christmas!",
+            "OrbitJungwon": "Jungwon, wishing you a Christmas that sparkles like a galaxy. May your orbit always bring you closer to happiness and may the stars guide you to a wonderful holiday season!",
+            "OrbitJasmine": "Jasmine, may your Christmas be as infinite as the universe. I hope your orbit is filled with the light of a thousand stars and your heart finds its home in the holiday magic.",
+            "OrbitGyuvin": "For Gyuvin, may the stars align to bring you the most magical Christmas yet. Keep orbiting in grace and let the festive light lead you to a universe of happiness. Merry Christmas!",
+            "OrbitAnnaa": "Annaa, you are a gentle light in our Orbit. This Christmas, may the celestial peace of the season wrap around you like a cozy constellation. Stay bright and Merry Christmas!",
+            "OrbitHao": "Hao, wishing you a Christmas full of stardust and wonder. May your orbit stay steady and joyful, and may you find magic in every cosmic moment this holiday season.",
+            "OrbitParkJihyo": "Jihyo, may the Christmas stars shine extra bright for you tonight. Wishing you an orbit filled with love and a heart that glows with the radiance of the galaxy. Merry Christmas!",
+            "OrbitDokyeom": "Dokyeom, have a stellar Christmas! May your orbit be filled with success and your spirit sparkle like a newborn star. Wishing you a holiday that's out of this world!",
+            "OrbitDijjah": "Dijjah, may the holiday light guide your orbit toward peace and hope. You are a vital part of our galaxy, and I hope your Christmas is filled with starlit joy.",
+            "OrbitSangwon": "Sangwon, Merry Christmas! May your orbit be blessed with laughter and may you reach for the stars in the coming year. You make our constellation much brighter!",
+            "OrbitSohyun": "Sohyun, wishing you a Christmas as beautiful as a shooting star. May your orbit always be surrounded by love and your festive nights be filled with celestial wonder.",
+            "OrbitTaesan": "Taesan, Merry Christmas! May this holiday recharge your cosmic energy and lead your orbit toward new triumphs. Keep shining like the star you are!",
+            "OrbitWonyoung": "Wonyoung, I hope you continue to be the most radiant star in the sky. May your Christmas orbit be magical, full of stardust, and wonderful surprises. Merry Christmas!",
+            "OrbitEunseok": "Eunseok, may your Christmas be as steady and bright as a guiding star. May your orbit always find its way back to joy and warmth. Have a celestial holiday!",
+            "OrbitNingning": "Ningning, sending you holiday wishes from across the galaxy. May your orbit be warm, your heart be light, and your Christmas sparkle with infinite starlight.",
+            "OrbitWindah": "Windah, Merry Christmas! May the joy of the season pull your orbit into a cycle of endless happiness. Keep glowing with that festive starlight!",
+            "OrbitRuonan": "Ruonan, this Christmas, may you find true peace among the stars. May your orbit be filled with moments of love that are as timeless as the universe itself.",
+            "OrbitDoyoung": "Doyoung, Merry Christmas! May celestial blessings orbit your life today and always. May your holiday be wrapped in the light of the most beautiful stars.",
+            "OrbitHannii": "Hannii, wishing you a cozy Christmas under the starlit sky. May your orbit be delightful and may every star you see remind you of how much you are loved.",
+            "OrbitSungchan": "Sungchan, may your dreams align like the stars this Christmas. May your orbit be filled with festive cheer and your new year be a journey through a galaxy of success.",
+            "OrbitMinjiy": "Minjiy, Merry Christmas! May you always be surrounded by an orbit of love and light. You are a star that makes our world much brighter every single day.",
+            "OrbitSunghoon": "Sunghoon, Christmas is the time for the stars to shine together. May your orbit be blessed with peace and your holiday be as magnificent as the Milky Way.",
+            "OrbitMaryam": "Maryam, in this sacred Christmas moment, may you feel the quiet peace of the stars. May your orbit be gentle and your holiday spirit be as pure as starlight.",
+            "OrbitJaeyun": "Jaeyun, wishing you a Christmas filled with cosmic warmth. May the spirit of the season guide your orbit toward new inspirations and bright beginnings. Merry Christmas!",
+            "OrbitSeeun": "Seeun, may your happiness multiply across the galaxy this Christmas. May your orbit be merry and your heart shine with the glow of a thousand holiday lights.",
+            "OrbitSunoo_": "Sunoo, Merry Christmas! May this season give you reasons to laugh until the stars dance. May your orbit be as charming and radiant as a supernova!",
+            "OrbitMinju": "Minju, Christmas is a time for hope and starlight. May your orbit be filled with all the celestial wonders you deserve. Have a truly stellar Christmas!",
+            "OrbitKyungsoo": "Kyungsoo, Merry Christmas! May this holiday bring infinite blessings from the stars above. May your orbit be refreshed and your heart find its cosmic peace.",
+            "OrbitAeri": "Aeri, this Christmas, may you find joy in the sparkle of the stars. May your orbit be cozy, bright, and as serene as a clear winter night in the galaxy.",
+            "OrbitJongseong": "Jongseong, Merry Christmas! May every day of your holiday be as breathtaking as a nebula. Wishing you an orbit filled with joy and celestial prosperity.",
+            "OrbitGaeuls": "Gaeuls, may your heart be filled with the warmth of a sun this Christmas. May your orbit be sweet and your memories be as permanent as the constellations.",
+            "OrbitHeeseung": "Heeseung, Merry Christmas! May this holiday be the start of a new voyage through a galaxy of happiness. Your orbit is truly special to us.",
+            "OrbitDohoon": "Dohoon, Christmas is a time for the whole Orbit to celebrate. May your holiday be full of starlit laughter and great company. Have a stellar one!",
+            "OrbitDino": "Dino, Merry Christmas! May the holiday spirit give your orbit new strength and light. Wishing you a festive season that shines as bright as the morning star.",
+            "OrbitYujiin": "Yujiin, may you always be surrounded by an orbit of magic. May your Christmas be sparkling, full of stardust, and cosmic surprises. Merry Christmas!"
+            "ReaderBima": "Merry Christmas, Bima! As the reader of the star of Decembular, may you find your own path lit by the brightest holiday lights. May your orbit be filled with clarity and your heart resonate with the peaceful rhythm of the winter galaxy.",
+            "ReaderSurya": "To our dream interpreter, Surya, may this Christmas bring you dreams that sparkle like stardust. May your personal orbit be a sanctuary of peace and may the celestial spirits bless you with a magical holiday season!",
+            "ReaderCahyo": "Merry Christmas, Cahyo! As the bearer of the tarot of Decembular, may the stars align to show you a future full of joy. May your orbit stay steady and bright, guiding others with your light while finding your own celestial happiness."
+        };
 
-        function revealFate() {
-            const nameInput = document.getElementById('userName').value;
-            
-            if (nameInput.trim() === "") {
-                alert("Please enter your name first!");
+        function getChristmasWish() {
+            const inputName = document.getElementById('orbitNameInput').value.trim();
+            const wishTextElement = document.getElementById('wishText');
+            const wishOverlay = document.getElementById('wishOverlay');
+
+            if (inputName === "") {
+                alert("Please enter your Orbit name!");
                 return;
             }
 
-            // Memilih zodiac secara acak dengan peluang rata
-            const randomZodiac = zodiacs[Math.floor(Math.random() * zodiacs.length)];
+            // Memastikan nama yang diinput ada di dalam daftar orbitWishes
+            if (orbitWishes.hasOwnProperty(inputName)) {
+                wishTextElement.innerHTML = `<p>${orbitWishes[inputName]}</p>`;
+            } else {
+                wishTextElement.innerHTML = `<p>Maaf, nama <strong>${inputName}</strong> belum terdaftar sebagai Orbit kami. Coba cek lagi ya!</p>`;
+            }
             
-            // Menyusun teks jawaban
-            const resultMsg = `${nameInput}, your soulmate is ${randomZodiac}.`;
-            
-            // Menampilkan di modal
-            document.getElementById('resultText').innerText = resultMsg;
-            document.getElementById('overlay').style.display = 'flex';
+            wishOverlay.style.display = 'flex'; // Menampilkan modal
         }
 
-        function closeModal() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('userName').value = ''; // Reset input
+        function closeWishModal() {
+            document.getElementById('wishOverlay').style.display = 'none';
+            document.getElementById('orbitNameInput').value = ''; // Mengosongkan input
         }
     </script>
 
